@@ -4,6 +4,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { TaskRepository } from './task.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from './task.entity';
+import { TaskStatus } from './task-status.enums';
 
 @Injectable()
 export class TasksService {
@@ -46,6 +47,10 @@ export class TasksService {
         return found
     }
 
+    async createTask(createTaskDto: CreateTaskDto): Promise<Task> {
+        return this.taskRepository.createTask(createTaskDto)
+    }
+
     // deleteTask(id: string): void {
     //     // not so performant code cause there are 2 iterations (find and filter)
     //     const found = this.getTaskById(id)
@@ -57,16 +62,6 @@ export class TasksService {
     //     task.status = status
     //     return task
     // }
-
-    // createTask(createTaskDto: CreateTaskDto): Task {
-    //     const {title, description} = createTaskDto
-
-    //     const task: Task = {
-    //         id: uuidv1(),
-    //         title,
-    //         description,
-    //         status: TaskStatus.OPEN
-    //     }
 
     //     this.tasks.push(task)
     //     return task
