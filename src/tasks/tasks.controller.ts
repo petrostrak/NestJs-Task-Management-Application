@@ -10,14 +10,10 @@ import { TaskStatus } from './task-status.enums';
 export class TasksController {
     constructor(private tasksService: TasksService) {}
 
-    // @Get()
-    // getTasks(@Query(ValidationPipe) filterDto: GetTasksFilterDto): Task[] {
-    //     if(Object.keys(filterDto).length) {
-    //         return this.tasksService.getTasksWithFilters(filterDto)
-    //     } else {
-    //         return this.tasksService.getAllTasks()
-    //     }
-    // }
+    @Get()
+    getTasks(@Query(ValidationPipe) filterDto: GetTasksFilterDto): Promise<Task[]> {
+        return this.tasksService.getTasks(filterDto)
+    }
 
     @Get('/:id')
     getTaskById(@Param('id', ParseIntPipe) id: number): Promise<Task> {
@@ -36,7 +32,7 @@ export class TasksController {
     }
 
     @Patch('/:id/status')
-    updateTaskStatus(@Param('id', ParseIntPipe) id: number, @Body('status', TaskStatusValidationPipe) status: TaskStatus): Promise<Task> {
+    updateTaskStatus(@Param('id', ParseIntPipe) id: number, @Body('status', TaskStatusValidationPipe) status: TaskStatus): Promise <Task> {
         return this.tasksService.updateTaskStatus(id, status)
     }
 
