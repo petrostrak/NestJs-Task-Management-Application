@@ -1,4 +1,4 @@
 server:
-  origin: http://asdfg.se-website-eu-west-1.amazonaws.com
+  origin: http://task-management-with-nest-js.s3-website.eu-central-1.amazonaws.com
 db:
   synchronize: false
