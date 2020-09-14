@@ -1,2 +1,4 @@
+server:
+  origin: http://asdfg.se-website-eu-west-1.amazonaws.com
 db:
   synchronize: false
